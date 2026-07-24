@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "modelscope-qwen-github-agent"
+version = "0.1.0"
+description = "A Qwen-Agent CLI with a read-only GitHub repository tool"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "python-dotenv>=1.0,<2",
+  "qwen-agent>=0.0.29,<1",
+  "requests>=2.32,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<9",
+  "ruff>=0.5,<1",
+]
+
+[project.scripts]
+qwen-github-agent = "qwen_github_agent.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qwen_github_agent"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
